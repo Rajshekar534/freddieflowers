@@ -2,6 +2,8 @@
 
 namespace App\Entities;
 
+use Carbon\Carbon;
+
 class Subscription
 {
     /**
@@ -60,4 +62,65 @@ class Subscription
      * @var \Carbon\Carbon|null
      */
     protected $nextDeliveryDate;
+    
+    /**
+     * To set subscription status
+     * @param int $plan
+     */
+    public function setStatus(int $status)
+    {
+        $this->status = self::STATUSES_ALLOWED[$status];
+        
+        return $this;
+    }
+    
+    /**
+     * To get subscription status
+     * @return int
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+    
+    /**
+     * To set subscription plan
+     * @param int $plan
+     */
+    public function setPlan(int $plan)
+    {
+        $this->plan = self::PLANS_ALLOWED[$plan];
+        
+        return $this;
+    }
+    
+    /**
+     * To get subscription plan
+     * @return int
+     */
+    public function getPlan()
+    {
+        return $this->plan;
+    }
+    
+    /**
+     * To set next delivery date for this subscription.
+     * @param Carbon $nextDeliveryDate
+     */
+    public function setNextDeliveryDate(Carbon $nextDeliveryDate)
+    {
+        $this->nextDeliveryDate = $nextDeliveryDate;
+        
+        return $this;
+    }
+    
+    /**
+     * To get next delivery date of this subscription
+     * @return Carbon
+     */
+    public function getNextDeliveryDate(): Carbon
+    {
+        return $this->nextDeliveryDate;
+    }
+    
 }
